@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册页面</title>
+</head>
+<body>
+    <h1 style = "text-align: center;">注册</h1>
+    <form method="POST"  action="/register">
+        <div style = "text-align: center;">
+            <label for="name">用户名：</label><input id="name" type="text" name="username" />
+            <br/><br/>
+            <label for="pw">密&ensp;&ensp;码：</label><input id="pw" type="password" name="password" />
+            <br/><br/>
+            <input type="submit" id = "register_button" value="注册"/>
+            <br/><br/>
+            <script>
+                function button_onclick(){
+                window.location.href="/login";
+                }
+            </script>
+                <input type="button" value="有账号了？登录" onclick="javascript:button_onclick();" />
+                
+        </div>
+        
+    </form>
+</body>
+
+
+<script src="javascripts/md5.js"></script>
+
+<script>  
+        document.getElementById("register_button").onclick = function MD5(){
+         var password = document.getElementById("pw").value;
+         var username = document.getElementById("name").value;
+         var password = hex_md5(password+username);
+         document.getElementById("pw").value = password;
+     }
+</script>
+</html>

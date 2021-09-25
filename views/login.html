@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登录页面</title>
+</head>
+<body>
+
+
+
+
+    <h1 style = "text-align: center;">登录</h1>
+    <form method="POST" action="/login">
+        <div style = "text-align: center;">
+            <label for="name">用户名：</label><input id="name" type="text" name="username" placeholder="请输入用户名"/>
+            <br/><br/>
+            <label for="pw">密&ensp;&ensp;码：</label><input id="pw" type="password" name="password" placeholder="请输入密码"/>
+            <br/><br/>
+            <div id="v_container" style="width: 200px;height: 50px; margin: 0 auto;text-align: center;line-height: 0px;" ></div>
+            <label for="code_input">验证码：</label><input id="code_input" type="text" name = "yzm" maxlength="4" minlength="4" placeholder="请输入验证码"/>
+            <br/><br/>
+            <input type="submit" id="my_button" value="登录" onclick="MD5();check_yzm()"/>
+            <br/><br/>
+            
+            <script>
+                function button_onclick(){
+                window.location.href="/register";
+                }
+            </script>
+                <input type="button" value="没有账号？赶快注册一个吧" onclick="javascript:button_onclick();" />
+        </div>
+
+
+    </form>
+
+
+</body>
+
+<script type="text/javascript" src="javascripts/gVerify.js" ></script>
+<script type="text/javascript" src="javascripts/md5.js"></script>
+
+<script>
+        var verifyCode = new GVerify("v_container");
+
+            function check_yzm(){
+            var yzm = verifyCode.validate(document.getElementById("code_input").value);
+            if(yzm){
+                var x = 1;
+            }else
+            {
+                var x = 0;
+                alert("验证码错误");
+            }
+            document.getElementById("code_input").value = x;
+        }
+</script>
+
+<script>  
+           function MD5(){
+            var password = document.getElementById("pw").value;
+            var username = document.getElementById("name").value;
+            var password = hex_md5(password+username);
+            document.getElementById("pw").value = password;
+        }
+</script>
+
+
+</html>
